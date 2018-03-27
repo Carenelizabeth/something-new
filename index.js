@@ -24,8 +24,8 @@ function retrieveReviewsAPI(location, businessType, callback){
 			what: `${businessType}`,
 			days: 180,
 			rpp: 10,
-			format: json, 
-			//sort: reviewRating,
+			format: 'json', 
+			sort: 'reviewRating',
 			publisher: PUBLISHER_CODE
 		},
 		type: 'GET',
