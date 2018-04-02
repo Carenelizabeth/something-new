@@ -3,6 +3,9 @@ const PLACES_API_URL = "https://api.citygridmedia.com/content/places/v2/search/w
 const PUBLISHER_CODE = "10000022998";
 const GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/js"
 const KEY = "AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ";
+const LOADING_MESSAGE = [
+	"Asking for opinions", "Knocking on doors", "Checking out the business", "Getting the best"
+	]
 
 function handleSearchForm(){
 	//console.log("handle search form ran");
@@ -15,7 +18,16 @@ function handleSearchForm(){
 		let location = getLocation();
 		$(event.currentTarget).find('.js-business-type').val("");
 		retrieveReviewsAPI(location, businessType, displayReviews);
+		randomMessage();
 	});
+}
+
+function randomMessage(){
+	let rand = Math.floor(Math.random());
+	console.log(rand);
+	let randMessage = LOADING_MESSAGE[rand];
+	console.log(randMessage);
+	$('.waiting-message').html(randMessage);
 }
 
 function getLocation(){
@@ -41,10 +53,10 @@ function retrieveReviewsAPI(location, businessType, callback){
 		},
 		type: 'GET',
 		dataType: 'jsonp',
+		timeout: 3000,
 		complete: function(){$('.loading-message').css("visibility", "hidden");},
 		success: callback,
-		timeout: 3000,
-    error: function() { alert('Failed!'); }
+    	error: function() { alert('Failed!'); }
 	};
 	$.ajax(settings);
 }
