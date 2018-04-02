@@ -1,0 +1,546 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*{box-sizing: border-box}
+
+body{
+  background-color: #3599A6;
+}
+
+header{
+  background-color: #1C575E;
+  width: 100%;
+  display: flex;
+}
+
+.banner-text{
+  position: relative;
+  z-index: 2;
+  height: 70vh;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+h1{
+  font-size: 50px;
+  color: white;
+  text-shadow: 2px 2px #081719;
+  text-align: right;
+  align-self: flex-end;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.description{
+  width: 300px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: bolder;
+  color: white;
+  font-size: 18px;
+  text-align: right;
+}
+
+.description p{
+  margin: .4em;
+  line-height: 1.2em;
+}
+
+.images{
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 1;
+  display: flex;
+  opacity: .5;
+}
+
+.align-left{
+  padding: 15px;
+  min-width: 200px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pizza{
+  height: 50%;
+  background-image: url("pizzaDelivery.svg");
+  background-repeat: no-repeat;
+}
+
+.open-sign{
+  height: 28%;
+  background-image: url("openSign.svg");
+  background-repeat: no-repeat;
+  
+}
+
+.align-right{
+  flex-grow: 3;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.movie-line{
+  height: 60%;
+  width: 100%;
+  background-image: url("MovieLine.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.dog-visit{
+  height: 40%;
+  width: 100%;
+  background-image: url("dogVisit.svg");
+  background-repeat: no-repeat;
+}
+
+.request-form{
+  position: relative;
+  width: 80%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+}
+
+.loading-message{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.spinner{
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+}
+
+.loading-message p {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 20px;
+  line-height: 1.2em;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px #081719;
+  text-align: center;
+}
+
+form{
+  text-align: right;
+  line-height: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 18px;
+}
+
+form input {
+  margin: 6px 0 20px 0;
+  padding-left: 5px;
+  width: 200px;
+  height: 30px;
+  box-shadow: 2px 2px #081719;
+}
+
+:focus{
+  border: solid 1px #5C080B; 
+}
+
+.js-submit{
+  width: 200px;
+  height: 30px;
+  background-color: #A8E7EE;
+  color: #081719;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: bold;
+  box-shadow: 2px 2px #081719;
+}
+
+.js-submit:hover{
+  background-color: #226973;
+  color: white;
+}
+
+.js-submit:active{
+  transform: translateY(4px);
+}
+
+.js-reviews-results{
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.each-review{
+  background-color: white;
+  width: 250px;
+  flex: auto;
+  margin: 20px 0 20px 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 2px #081719;
+}
+
+.review-business-name{
+  font-family: 'Arvo', serif;
+  color: #081719;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.2em;
+} 
+
+.review-business-name:hover{
+  color: #5C080B;
+}
+
+.review-business-name:visited{
+  color: #1C575E;
+}
+
+blockquote{
+  font-family: 'Arima Madurai', cursive;
+  line-height: 1.6em;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+blockquote::before{
+  color: #ccc;
+  content: "\201C";;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.05em;
+  vertical-align: -0.4em;
+}
+
+blockquote::after{
+  color: #ccc;
+  content: "\201D";;
+  font-size: 4em;
+  line-height: 0.1em;
+  vertical-align: -0.5em;
+
+}
+
+.review-author{
+  color: #081719;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: 'Courgette', cursive;
+  align-self: flex-end;
+}
+
+.review-author::before{
+  content: "\2014";
+}
+
+.review-source{
+  font-family: 'Arima Madurai', cursive;
+  color: #3599A6;
+  font-size: 16px;
+  align-self: flex-end;
+}
+
+.review-source:hover{
+  color: #5C080B;
+}
+
+.review-source:visited{
+  color: #081719;
+}
+
+h2{
+  font-family: 'Arvo', serif;
+  font-weight: bold;
+  color: #5C080B;
+  font-size: 24;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-family: 'Arima Madurai', cursive;
+  line-height: 1.6em;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.overlay{
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active{
+  top: 0;
+}
+
+.lightbox{
+  position: fixed;
+  background-color: white;
+  height: 90%;
+  width: 90%;
+  z-index: 4;
+  box-shadow: 5px 10px 10px;
+}
+
+.close-lightbox{
+  position: absolute;
+  background-color: white;
+  margin: 10px;
+  right: 0;
+  bottom: 0;
+  color: #5C080B;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.lightbox-data{
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.business-data{
+  flex: auto;
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.business-data h2{
+  color: #5C080B;
+}
+
+.business-image{
+  display: none;
+}
+
+.business-image img{
+  border: solid 2px #081719;
+}
+
+.business-data address{
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 18px;
+  line-height: 1.2em;
+}
+
+.business-data a{
+  text-decoration: none;
+  color: #3599A6;
+  margin-top: 20px;
+}
+
+.business-site{
+  font-family: 'Arima Madurai', cursive;
+  font-size: 24px;
+  margin-top: 20px;
+  color: #1E5E66;
+}
+
+
+
+.business-image img{
+  width: 100%;
+}
+
+address{
+  display: flex;
+  flex-direction: column;
+}
+
+.business-map{
+  border: solid 2px #1E5E66;
+  margin-left: 10px;
+  width: 100%;
+  flex: 1 1 50%;
+}
+
+.map-results{
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 550px){
+  
+h1{
+  font-size: 80px
+}
+
+.description{
+  font-size: 24px;
+  text-align: left;
+}
+
+.banner-text{
+  width: 66%;
+  align-items: flex-start;
+}
+
+  
+.request-form{
+  width: 66%;
+}
+  
+.js-reviews-results{
+  width: 66%;
+}
+
+.lightbox{
+  width: 90%;
+  min-height: 50%;
+}
+
+.lightbox-data{
+  flex-direction: row
+}
+.business-image{
+  display: flex;
+}
+
+.business-map{
+  width: 50%;
+  height: 100%;
+}
+
+.business-image{
+  width: 100%;
+}
+
+}
+
+
+@media only screen and (min-width: 1000px){
+
+h1{
+  font-size: 100px
+}
+
+.banner-text{
+  width: 50%;
+  align-items: flex-start;
+}
+  
+.description{
+  text-align: left;
+}  
+  
+.request-form{
+  width: 50%;
+}
+  
+.js-reviews-results{
+  width: 50%;
+}
+
+.lightbox{
+  min-width: 50%;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
