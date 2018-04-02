@@ -54,7 +54,6 @@ body{
 
 header{
   background-color: #1C575E;
-  width: 100%;
   display: flex;
 }
 
@@ -112,15 +111,16 @@ h1{
 
 .pizza{
   height: 50%;
-  background-image: url("pizzaDelivery.svg");
+  background-image: url("http://carenkeyes.com/wp-content/uploads/2018/04/pizzaDelivery.png");
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .open-sign{
   height: 28%;
-  background-image: url("openSign.svg");
+  background-image: url("http://carenkeyes.com/wp-content/uploads/2018/04/openSign.png");
   background-repeat: no-repeat;
-  
+  background-size: contain;
 }
 
 .align-right{
@@ -134,7 +134,7 @@ h1{
 .movie-line{
   height: 60%;
   width: 100%;
-  background-image: url("MovieLine.svg");
+  background-image: url("http://carenkeyes.com/wp-content/uploads/2018/04/MoveLine.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -143,8 +143,9 @@ h1{
 .dog-visit{
   height: 40%;
   width: 100%;
-  background-image: url("dogVisit.svg");
+  background-image: url("http://carenkeyes.com/wp-content/uploads/2018/04/dogVisit.png");
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .request-form{
@@ -477,10 +478,6 @@ h1{
 .business-map{
   width: 50%;
   height: 100%;
-}
-
-.business-image{
-  width: 100%;
 }
 
 }

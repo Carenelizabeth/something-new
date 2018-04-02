@@ -1,6 +1,7 @@
 const REVIEWS_API_URL = "https://api.citygridmedia.com/content/reviews/v2/search/where";
 const PLACES_API_URL = "https://api.citygridmedia.com/content/places/v2/search/where";
 const PUBLISHER_CODE = "10000022998";
+const GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/js"
 const KEY = "AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ";
 
 function handleSearchForm(){
@@ -77,14 +78,17 @@ function renderReviews(results){
 	//console.log("render reviews ran");
 return`
 		<div class="each-review">
-			<a class="review-business-name" onclick="handleLightbox()" href="#">${results.business_name}</a>
+			<a class="review-business-name" onclick='handleLightbox()' href="#">${results.business_name}</a>
 			<blockquote class="review-text">${results.review_text}</blockquote>
 			<p class="review-author">${results.review_author}</p>
 			<a class="review-source" href="${results.review_url}" target="_blank">Original Review</a>
  		</div>`;
 }
 
-/*function retrievePlacesAPI(businessName){
+//for when the API is working
+//onclick='retrievePlacesAPI("${results.business_name}")'
+
+function retrievePlacesAPI(businessName){
   console.log("retrieve places api ran");
   let location = getLocation();
   const settings = {
@@ -105,17 +109,8 @@ return`
     error: function() {alert('Failed!')}
   };
   $.ajax(settings);
-}*/
+}
 
-/*function displayPlaces(data){
-  console.log("display places ran");
-  return`
-    <div class = "business-data">
-      <h2>${data.results.locations.name}</h2>
-      <a class = "business-site" href=${data.results.locations.website}>
-  `;
-  $('.js-places-results').html(businessData);
-}*/
 
 function displayPlaces(data){
   console.log("display places ran");
@@ -144,10 +139,21 @@ function formatPhoneNumber(number){
 }
 
 function displayMap(data){
-  let coords = `${data.results.locations.latitude},${data.results.locations.longitude}`
+  let coords = `"${data.results.locations.latitude},${data.results.locations.longitude}"`
+  retrieveMapAPI(coords);
   return`
     <div class="business-map">
     </div>`;
+}
+
+function retrieveMapAPI(coords){
+	const settings = {
+		urL: GOOGLE_MAPS_API,
+		data: {
+			key: KEY,
+			center: coords
+		}
+	}
 }
 
 function handleLightbox(data){
