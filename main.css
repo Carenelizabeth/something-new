@@ -201,8 +201,8 @@ form input {
   box-shadow: 2px 2px #081719;
 }
 
-:focus{
-  border: solid 1px #5C080B; 
+focus{
+  outline: solid 1px #5C080B; 
 }
 
 .js-submit{
@@ -426,7 +426,7 @@ address{
   flex-direction: column;
 }
 
-.business-map{
+#map{
   border: solid 2px #1E5E66;
   margin-left: 10px;
   width: 100%;
@@ -472,12 +472,17 @@ h1{
   flex-direction: row
 }
 .business-image{
-  display: flex;
+  display: block;
 }
 
 .business-map{
   width: 50%;
   height: 100%;
+}
+
+iframe{
+  height: 100%;
+  width: 100%;
 }
 
 }
@@ -507,7 +512,8 @@ h1{
 }
 
 .lightbox{
-  min-width: 50%;
+  width: 66%;
+  height: 66%;
 }
 
 }

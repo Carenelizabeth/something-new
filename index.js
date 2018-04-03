@@ -3,9 +3,14 @@ const PLACES_API_URL = "https://api.citygridmedia.com/content/places/v2/search/w
 const PUBLISHER_CODE = "10000022998";
 const GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/js"
 const KEY = "AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ";
-const LOADING_MESSAGE = [
-	"Asking for opinions", "Knocking on doors", "Checking out the business", "Getting the best"
-	]
+const LOADING_MESSAGE = ["Asking for opinions", "Knocking on doors", "Checking out the business", "Testing the service", "Sampling the product"]
+
+function initMap(){
+	map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 36, lng: 150},
+    zoom: 8
+  });
+}
 
 function handleSearchForm(){
 	//console.log("handle search form ran");
@@ -23,7 +28,7 @@ function handleSearchForm(){
 }
 
 function randomMessage(){
-	let rand = Math.floor(Math.random());
+	let rand = Math.floor(LOADING_MESSAGE.length*Math.random());
 	console.log(rand);
 	let randMessage = LOADING_MESSAGE[rand];
 	console.log(randMessage);
@@ -45,10 +50,10 @@ function retrieveReviewsAPI(location, businessType, callback){
 		data:{
 			where: `${location}`,
 			what: `${businessType}`,
-			days: 180,
+			//days: 360,
 			rpp: 10,
 			format: 'json', 
-			sort: 'reviewRating',
+			//sort: 'reviewRating',
 			publisher: PUBLISHER_CODE
 		},
 		type: 'GET',
@@ -66,31 +71,42 @@ function displayReviews(data){
   const reviews = data.results.reviews.map((item, index) =>
   renderReviews(item));
   //console.log(reviews);
-  if(reviews.length === 0){
+
+	if(reviews.length === 0){
     displayNotFound();
   }
-  else {
+  	else {
   $('.js-reviews-results').html(reviews);}
   $('html, body').animate({
         scrollTop: $(".js-reviews-results").offset().top
     }, 2000);
 }
 
-function displayNotFound(){
+function displayErrorMessage(){
   const errorMessage = `
+    <div class="each-review error-message">
+      <h2>Uh-oh</h2>
+      <p>Something went wrong with the search! Would you like to try again with another search?<p>
+      <p class="review-author">Sincerely Sorry</p>
+    </div>`;
+    $('.js-reviews-results').html(errorMessage); 
+}
+
+function displayNotFound(){
+  const notFoundMessage = `
     <div class="each-review error-message">
       <h2>Uh-oh</h2>
       <p>We couldn't find any reviews for that search. Would you like to try again?<p>
       <p class="review-author">Very Apologetic</p>
     </div>`;
-    $('.js-reviews-results').html(errorMessage); 
+    $('.js-reviews-results').html(notFoundMessage); 
 }
 
 function renderReviews(results){
 	//console.log("render reviews ran");
 return`
 		<div class="each-review">
-			<a class="review-business-name" onclick='handleLightbox()' href="#">${results.business_name}</a>
+			<a class="review-business-name" onclick="handleLightbox()" href="#">${results.business_name}</a>
 			<blockquote class="review-text">${results.review_text}</blockquote>
 			<p class="review-author">${results.review_author}</p>
 			<a class="review-source" href="${results.review_url}" target="_blank">Original Review</a>
@@ -128,7 +144,6 @@ function displayPlaces(data){
   console.log("display places ran");
   let phoneNumber = formatPhoneNumber(data.results.locations.phone_number);
   return`
-    <div class = "business-data">
       <div class="business-info"><div class="business-image"><img src="${data.results.locations.image}"></div>
       <h2 class="review-business-name">${data.results.locations.name}</h2></div>
       <address>
@@ -136,8 +151,7 @@ function displayPlaces(data){
         <p class="city-state">${data.results.locations.address.city}, ${data.results.locations.address.state} ${data.results.locations.address.postal_code}<p>
         <p class="telephone"><a href="tel:${data.results.locations.phone_number}">${phoneNumber}</a></p>
         <p class="business-site"><a href=${data.results.locations.website} target=_"blank">Visit Website</a></p>
-      </address>
-    </div>`;
+      </address>`;
 }
 
 function formatPhoneNumber(number){
@@ -152,21 +166,33 @@ function formatPhoneNumber(number){
 
 function displayMap(data){
   let coords = `"${data.results.locations.latitude},${data.results.locations.longitude}"`
-  retrieveMapAPI(coords);
-  return`
-    <div class="business-map">
-    </div>`;
+  console.log(coords);
+  let businessName = `${data.results.locations.name}`.replace(/[^a-z0-9+]+/gi, '+');
+  console.log(businessName);
+  let zipCode = `${data.results.locations.address.postal_code}`
+  console.log(zipCode)
+  console.log(`https://www.google.com/maps/embed/v1/place?key=AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ&q=${businessName}+${zipCode}`)
+  let mapURL = `  
+  	<iframe
+  		src="https://www.google.com/maps/embed/v1/place?key=AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ
+    		&q=${businessName}+${zipCode}"
+    		allowfullscreen>
+		</iframe>`
+  
+  $('.business-map').html(mapURL);
+  /*const mapOptions = {
+  	center: new google.maps.LatLng(coords),
+  	zoom: 5,
+  };
+
+  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(coords),
+        animation: google.maps.Animation.DROP,
+        map: map,
+    });*/
 }
 
-function retrieveMapAPI(coords){
-	const settings = {
-		urL: GOOGLE_MAPS_API,
-		data: {
-			key: KEY,
-			center: coords
-		}
-	}
-}
 
 function handleLightbox(data){
   console.log("handle lightbox ran");
@@ -190,15 +216,8 @@ function handleLightbox(data){
   }};
   let businessData = displayPlaces(dataObject);
   let mapData = displayMap(dataObject);
-  let lightboxData =`
-    <p class="close-lightbox"><a onclick="hideLightbox()" href="#">Close</a></p>
-    <div class="lightbox-data">
-      ${businessData}
-      ${mapData}
-    </div>`;
-  $('.lightbox').html(lightboxData);
+  $('.business-data').html(businessData);
 }
-
 
 function displayLightbox(){
   $('.overlay').addClass('active');

@@ -32,8 +32,8 @@
 		    </div>
 	   </header>
 	   
-	  <main>
-	    <div class="request-form">
+	  <main role="main">
+	    <section class="request-form">
 	      <div class="loading-message">
 	          <div class="spinner"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/2.gif" alt="loading"></div>
 	          <p class="waiting-message"></p>
@@ -46,17 +46,21 @@
 			      <input type="text" name="business-type" class="js-business-type" placeholder="sushi">
 			      <button type="submit" class="js-submit">Search</button>
 		    </form>
-		  </div>
+		  </section>
 
 		  <div class="js-reviews-results" aria-live="polite"></div>
 	  </main>
 
-	  <div class="overlay">
+	  <section class="overlay">
 	    <div class="lightbox">
-	      
+	    	<p class="close-lightbox"><a onclick="hideLightbox()" href="#">Close</a></p>
+    		<div class="lightbox-data">
+    			<section class="business-data"></section>
+	      		<div class="business-map"></div>
+	      	</div>
 	    </div>
-	  </div>
-	  
+	  </section>
+
 	  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="index.js"></script>
   </body>
