@@ -1,8 +1,9 @@
 const REVIEWS_API_URL = "https://api.citygridmedia.com/content/reviews/v2/search/where";
-const PLACES_API_URL = "https://api.citygridmedia.com/content/places/v2/search/where";
+//const PLACES_API_URL = "https://api.citygridmedia.com/content/places/v2/search/where";
 const PUBLISHER_CODE = "10000022998";
-const GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/js"
-const KEY = "AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ";
+//const GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/js"
+//const KEY = "AIzaSyClCuqyZIVyyddaalXsUzTGY02oIiuideQ";
+//let location;
 const LOADING_MESSAGE = ["Asking for opinions", "Knocking on doors", "Checking out the business", "Testing the service", "Sampling the product"]
 
 function initMap(){
@@ -41,9 +42,8 @@ function randomMessage(){
 
 function getLocation(){
   let location = $('.js-search-form').find('.js-location').val();
-  //console.log(location);
+  console.log(location);
   return location;
-
 }
 
 function retrieveReviewsAPI(location, businessType, callback){
@@ -65,16 +65,19 @@ function retrieveReviewsAPI(location, businessType, callback){
 		timeout: 3000,
 		complete: function(){$('.loading-message').css("visibility", "hidden");},
 		success: callback,
-    	error: function() { alert('Failed!'); }
+    	error: displayErrorMessage()
 	};
 	$.ajax(settings);
 }
 
 function displayReviews(data){
-  //console.log(data);
+  console.log(data);
+  if (data.results === undefined){
+  	displayErrorMessage();
+    }else{
   const reviews = data.results.reviews.map((item, index) =>
   renderReviews(item));
-  //console.log(reviews);
+  console.log(reviews);
 
 	if(reviews.length === 0){
     displayNotFound();
@@ -83,7 +86,7 @@ function displayReviews(data){
   $('.js-reviews-results').html(reviews);}
   $('html, body').animate({
         scrollTop: $(".js-reviews-results").offset().top
-    }, 2000);
+    }, 2000);}
 }
 
 function displayErrorMessage(){
@@ -122,7 +125,7 @@ return`
 
 function retrievePlacesAPI(businessName){
   console.log("retrieve places api ran");
-  let location = getLocation();
+  //let location = getLocation();
   const settings = {
     url: PLACES_API_URL,
     data: {
