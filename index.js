@@ -27,6 +27,10 @@ function handleSearchForm(){
 	});
 }
 
+function handleBusinessInfo(){
+	$('.each-review').click(handleLightbox);
+}
+
 function randomMessage(){
 	let rand = Math.floor(LOADING_MESSAGE.length*Math.random());
 	console.log(rand);
@@ -51,9 +55,9 @@ function retrieveReviewsAPI(location, businessType, callback){
 			where: `${location}`,
 			what: `${businessType}`,
 			//days: 360,
-			rpp: 10,
+			rpp: 12,
 			format: 'json', 
-			//sort: 'reviewRating',
+			sort: 'reviewRating',
 			publisher: PUBLISHER_CODE
 		},
 		type: 'GET',
@@ -244,4 +248,5 @@ function handleCloseLightbox(){
 
 handleSearchForm();
 escKeyHandler();
+handleBusinessInfo();
 //handleCloseLightbox();

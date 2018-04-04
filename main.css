@@ -79,15 +79,17 @@ h1{
 }
 
 .description{
-  width: 300px;
-  font-family: 'Libre Franklin', sans-serif;
-  font-weight: bolder;
+  width: 50%;
+  font-family: 'Varela Round', sans-serif;
   color: white;
-  font-size: 18px;
+  font-size: 22px;
   text-align: right;
+  background-color: rgba(28, 87, 94, .3)
+
 }
 
 .description p{
+  font-size: 28px;
   margin: .4em;
   line-height: 1.2em;
 }
@@ -242,6 +244,10 @@ focus{
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 2px 2px #081719;
+}
+
+.each-review:hover{
+  transform: scale(1.1);
 }
 
 .review-business-name{
@@ -495,20 +501,21 @@ h1{
 }
 
 .banner-text{
-  width: 50%;
+  width: 66%;
   align-items: flex-start;
 }
   
 .description{
   text-align: left;
+  width: 66%;
 }  
   
 .request-form{
-  width: 50%;
+  width: 66%;
 }
   
 .js-reviews-results{
-  width: 50%;
+  width: 66%;
 }
 
 .lightbox{
