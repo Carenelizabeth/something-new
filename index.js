@@ -86,7 +86,8 @@ function displayReviews(data){
   				$('.js-reviews-results').html(reviews);}
   				$('html, body').animate({
        			 scrollTop: $(".js-reviews-results").offset().top
-    				}, 2000);}
+    				}, 2000);
+  			}
 }
 
 function displayErrorMessage(){
@@ -133,14 +134,12 @@ function displayGoogleInfo(lat, lng){
 	console.log(local);
 	initializeLightbox();
 	displayLightbox();
-	getPlaceID(local)
+	//getPlaceID(local)
 }
 
 function initializeLightbox(){
-	let lightboxData = `
-		<div></div>
-		<div id='map'><div>`
-	$('.lightbox-data').hmtl(lightboxData);
+	display = `<div class="hopeless"></div>`
+	$('.lightbox-data').html(display);	
 }
 
 function getPlaceID(local){
@@ -148,8 +147,6 @@ function getPlaceID(local){
   		center: local,
   		zoom: 10
 	});
-
-
 }
 
 function handleLightbox(data){
@@ -163,6 +160,9 @@ function displayLightbox(){
 function hideLightbox(){
   console.log("hide lightbox ran");
   $('.overlay').removeClass('active');
+  $('html, body').animate({
+       			 scrollTop: $(".js-reviews-results").offset().top
+    				});
 }
 
 function escKeyHandler(){
@@ -173,11 +173,6 @@ function escKeyHandler(){
   });
 }
 
-function handleCloseLightbox(){
-  $('.overlay').on('click', function() {
-    hideLightbox();
-  });
-}
 
 handleSearchForm();
 escKeyHandler();
