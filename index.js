@@ -69,22 +69,24 @@ function retrieveReviewsAPI(location, businessType, callback){
 }
 
 function displayReviews(data){
-  //console.log(data);
+	    let lat = data.results.regions[0].latitude;
+    	let lng = data.results.regions[0].longitude;
+    	console.log(lat);
+    	console.log(lng);
+  		console.log(data);
   if (data.results === undefined){
   	displayErrorMessage();
     }else{
-  const reviews = data.results.reviews.map((item, index) =>
-  renderReviews(item));
-  //console.log(reviews);
+  		const reviews = data.results.reviews.map((item, index) =>
+  			renderReviews(item, lat, lng));
+			if(reviews.length === 0){
+    			displayNotFound();}
+  			else {
 
-	if(reviews.length === 0){
-    displayNotFound();
-  }
-  	else {
-  $('.js-reviews-results').html(reviews);}
-  $('html, body').animate({
-        scrollTop: $(".js-reviews-results").offset().top
-    }, 2000);}
+  				$('.js-reviews-results').html(reviews);}
+  				$('html, body').animate({
+       			 scrollTop: $(".js-reviews-results").offset().top
+    				}, 2000);}
 }
 
 function displayErrorMessage(){
@@ -107,14 +109,14 @@ function displayNotFound(){
     $('.js-reviews-results').html(notFoundMessage); 
 }
 
-function renderReviews(results){
+function renderReviews(results, latitude, longitude){
 	//console.log("render reviews ran");
 return`
 		<div class="each-review">
 			<h2 class="review-business-name">${results.business_name}</h2>
 			<blockquote class="review-text">${results.review_text}</blockquote>
 			<p class="review-author">${results.review_author}</p>
-			<a class="google-info" onclick="displayGoogleMaps()" href="#">Google</a>
+			<a class="google-info" onclick="displayGoogleInfo('${latitude}','${longitude}')" href="#">Google</a>
 			<a class="review-source" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}"</a>
  		</div>`;
 }
@@ -126,8 +128,28 @@ function displayReviewSite(review){
 	$('.lightbox-data').html(display);
 }
 
-function displayGoogleMaps(){
+function displayGoogleInfo(lat, lng){
+	let local = `{lat: ${lat}, lng:${lng}}`
+	console.log(local);
+	initializeLightbox();
 	displayLightbox();
+	getPlaceID(local)
+}
+
+function initializeLightbox(){
+	let lightboxData = `
+		<div></div>
+		<div id='map'><div>`
+	$('.lightbox-data').hmtl(lightboxData);
+}
+
+function getPlaceID(local){
+	map = new google.maps.Map(document.getElementById('map'), {
+  		center: local,
+  		zoom: 10
+	});
+
+
 }
 
 function handleLightbox(data){
