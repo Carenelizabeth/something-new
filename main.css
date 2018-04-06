@@ -50,12 +50,6 @@ table {
 
 *{box-sizing: border-box}
 
-.hopeless{
-  background-color: red;
-  height: 100%;
-  width: 100%;
-}
-
 body{
   background-color: #3599A6;
 }
@@ -392,7 +386,22 @@ h2{
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.hopeless{
+  background-color: red;
+  height: 100%;
+  width: 50%;
+}
+
+#map{
+  height: 100%;
+  width: 50%;
+}
+
+.hidden{
+  display: none;
 }
 
 .original-review{

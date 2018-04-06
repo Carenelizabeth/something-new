@@ -130,16 +130,22 @@ function displayReviewSite(review){
 }
 
 function displayGoogleInfo(lat, lng){
-	let local = `{lat: ${lat}, lng:${lng}}`
-	console.log(local);
-	initializeLightbox();
+	let latitude = parseFloat(lat);
+	let longitude = parseFloat(lng);
+	console.log(lat);
+	console.log(lng);
+	initializeLightbox(latitude, longitude);
 	displayLightbox();
-	//getPlaceID(local)
 }
 
-function initializeLightbox(){
-	display = `<div class="hopeless"></div>`
-	$('.lightbox-data').html(display);	
+function initializeLightbox(lat, lng){
+	let local = {lat: lat, lng: lng};
+	console.log(local);
+	//${'.lightbox-data'}.hide();
+	map = new google.maps.Map(document.getElementById('map'), {
+  		center: local,
+  		zoom: 10
+	});
 }
 
 function getPlaceID(local){
