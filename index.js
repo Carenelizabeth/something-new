@@ -63,7 +63,7 @@ function retrieveReviewsAPI(location, businessType, callback){
 		timeout: 3000,
 		complete: function(){$('.loading-message').css("visibility", "hidden");},
 		success: callback,
-    	error: displayErrorMessage()
+    	//error: displayErrorMessage()
 	};
 	$.ajax(settings);
 }
@@ -112,47 +112,55 @@ function displayNotFound(){
 
 function renderReviews(results, latitude, longitude){
 	//console.log("render reviews ran");
+	businessName = results.business_name
+	bName = businessName.split("'").join("&#8217;");
 return`
 		<div class="each-review">
 			<h2 class="review-business-name">${results.business_name}</h2>
 			<blockquote class="review-text">${results.review_text}</blockquote>
 			<p class="review-author">${results.review_author}</p>
-			<a class="google-info" onclick='displayGoogleInfo("${latitude}","${longitude}","${results.business_name}")' href="#">Google</a>
-			<a class="review-source" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}"</a>
+			<div class="more-information">
+				<a class="google-info" onclick='displayGoogleInfo("${latitude}","${longitude}","${bName}")' href="#"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/icons8-google-maps-50.png" alt="Google maps business information"/></a>
+				<a class="source-logo" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}" alt="original review"/></a>
+ 			</div>
  		</div>`;
 }
 
 function displayReviewSite(review){
+	$('.review-source').show();
+	$('#map').hide();
 	displayLightbox();
 	let display = `<iframe class="original-review" src=${review}></iframe>`
 	console.log(display);
-	$('.lightbox-data').html(display);
+	$('.review-source').html(display);
 }
 
 function displayGoogleInfo(lat, lng, bName){
 	let latitude = parseFloat(lat);
 	let longitude = parseFloat(lng);
-	console.log(lat);
-	console.log(lng);
 	initializeLightbox(latitude, longitude, bName);
 	displayLightbox();
 }
 
+let map;
+
 function initializeLightbox(lat, lng, bName){
+	$('#map').show();
+	$('.review-source').hide();
 	let local = {lat: lat, lng: lng};
 	console.log(local);
 	console.log(bName);
 	//${'.lightbox-data'}.hide();
 	map = new google.maps.Map(document.getElementById('map'), {
   		center: local,
-  		zoom: 10
+  		zoom: 12
 	});
 	var service = new google.maps.places.PlacesService(map);
 	service.textSearch({
 		location: local,
 		radius: 500,
-		query: bName
-	}, callback);
+      	query: bName}, 
+    callback);
 }
 
 function callback(results, status){
@@ -160,23 +168,15 @@ function callback(results, status){
 	 	for(let i=0; i<results.length; i++){
 	 		createMarker(results[i]);
 	 	}     
-     //let businesID = results[0].place_id;
   }
 }
 
 function createMarker(place){
-	var pLoc = place.geometry.location;
-	var marker = new google.maps.Marker({
+	let pLoc = place.geometry.location;
+	let marker = new google.maps.Marker({
 		map: map,
 		position: place.geometry.location
 	})
-}
-
-function getPlaceID(local){
-	map = new google.maps.Map(document.getElementById('map'), {
-  		center: local,
-  		zoom: 10
-	});
 }
 
 function handleLightbox(data){
@@ -191,8 +191,8 @@ function hideLightbox(){
   console.log("hide lightbox ran");
   $('.overlay').removeClass('active');
   $('html, body').animate({
-       			 scrollTop: $(".js-reviews-results").offset().top
-    				});
+    scrollTop: $(".js-reviews-results").offset().top
+    });
 }
 
 function escKeyHandler(){

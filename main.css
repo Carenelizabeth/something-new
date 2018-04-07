@@ -241,6 +241,7 @@ focus{
   flex: auto;
   margin: 20px 0 20px 20px;
   padding: 20px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -248,7 +249,11 @@ focus{
 }
 
 .each-review:hover{
-  
+  transform: scale(1.05);
+}
+
+.each-review:hover .more-information{
+  visibility: visible;
 }
 
 .review-business-name{
@@ -305,19 +310,17 @@ blockquote::after{
   content: "\2014";
 }
 
-.review-source{
-  font-family: 'Arima Madurai', cursive;
-  color: #3599A6;
-  font-size: 16px;
-  align-self: flex-end;
-}
-
-.review-source:hover{
-  color: #5C080B;
-}
-
-.review-source:visited{
-  color: #081719;
+.more-information{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40%;
+  background-color: rgba(12 ,38 ,41,.8);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  visibility: hidden;          
 }
 
 h2{
@@ -373,9 +376,6 @@ h2{
   z-index: 5;
 }
 
-.close-lightbox :hover{
-  bakground-color: rgba(0,0,0,.6);
-}
 .close-lightbox :visited{
   color: white;
 }
@@ -389,22 +389,17 @@ h2{
   justify-content: space-between;
 }
 
-.hopeless{
-  background-color: red;
-  height: 100%;
-  width: 50%;
-}
-
 #map{
   height: 100%;
-  width: 50%;
-}
-
-.hidden{
-  display: none;
+  width: 100%;
 }
 
 .original-review{
+  height: 100%;
+  width: 100%;
+}
+
+.review-source{
   height: 100%;
   width: 100%;
 }
