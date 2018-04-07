@@ -117,7 +117,7 @@ return`
 			<h2 class="review-business-name">${results.business_name}</h2>
 			<blockquote class="review-text">${results.review_text}</blockquote>
 			<p class="review-author">${results.review_author}</p>
-			<a class="google-info" onclick="displayGoogleInfo('${latitude}','${longitude}')" href="#">Google</a>
+			<a class="google-info" onclick='displayGoogleInfo("${latitude}","${longitude}","${results.business_name}")' href="#">Google</a>
 			<a class="review-source" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}"</a>
  		</div>`;
 }
@@ -129,23 +129,47 @@ function displayReviewSite(review){
 	$('.lightbox-data').html(display);
 }
 
-function displayGoogleInfo(lat, lng){
+function displayGoogleInfo(lat, lng, bName){
 	let latitude = parseFloat(lat);
 	let longitude = parseFloat(lng);
 	console.log(lat);
 	console.log(lng);
-	initializeLightbox(latitude, longitude);
+	initializeLightbox(latitude, longitude, bName);
 	displayLightbox();
 }
 
-function initializeLightbox(lat, lng){
+function initializeLightbox(lat, lng, bName){
 	let local = {lat: lat, lng: lng};
 	console.log(local);
+	console.log(bName);
 	//${'.lightbox-data'}.hide();
 	map = new google.maps.Map(document.getElementById('map'), {
   		center: local,
   		zoom: 10
 	});
+	var service = new google.maps.places.PlacesService(map);
+	service.textSearch({
+		location: local,
+		radius: 500,
+		query: bName
+	}, callback);
+}
+
+function callback(results, status){
+	 if (status === google.maps.places.PlacesServiceStatus.OK) {
+	 	for(let i=0; i<results.length; i++){
+	 		createMarker(results[i]);
+	 	}     
+     //let businesID = results[0].place_id;
+  }
+}
+
+function createMarker(place){
+	var pLoc = place.geometry.location;
+	var marker = new google.maps.Marker({
+		map: map,
+		position: place.geometry.location
+	})
 }
 
 function getPlaceID(local){
