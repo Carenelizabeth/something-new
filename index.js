@@ -53,7 +53,7 @@ function retrieveReviewsAPI(location, businessType, callback){
 			where: `${location}`,
 			what: `${businessType}`,
 			days: 1800,
-			rpp: 20,
+			rpp: 12,
 			format: 'json', 
 			sort: 'createdate',
 			publisher: PUBLISHER_CODE
@@ -143,19 +143,22 @@ function displayGoogleInfo(lat, lng, bName){
 }
 
 let map;
+//let marker;
 
 function initializeLightbox(lat, lng, bName){
 	$('#map').show();
 	$('.review-source').hide();
+
 	let local = {lat: lat, lng: lng};
-	console.log(local);
-	console.log(bName);
-	//${'.lightbox-data'}.hide();
+
 	map = new google.maps.Map(document.getElementById('map'), {
   		center: local,
   		zoom: 12
 	});
-	var service = new google.maps.places.PlacesService(map);
+
+	//let infowindow = new google.maps.InfoWindow();
+	let service = new google.maps.places.PlacesService(map);
+
 	service.textSearch({
 		location: local,
 		radius: 500,
@@ -172,10 +175,24 @@ function callback(results, status){
 }
 
 function createMarker(place){
-	let pLoc = place.geometry.location;
+	let name = place.name;
+	let address = place.formatted_address;
+	console.log(name);
+	console.log(address);
 	let marker = new google.maps.Marker({
 		map: map,
 		position: place.geometry.location
+	})
+
+	let infowindow = new google.maps.InfoWindow();
+
+	let business_info = `
+		<p class = "mapName">${name}</p>
+		<p>${address}</p>`
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(business_info);
+		infowindow.open(map, this);
 	})
 }
 
