@@ -122,8 +122,8 @@ return`
 				<p class="review-author">${results.review_author}</p>
 			</div>
 			<div class="more-information">
-				<a class="google-info" onclick='displayGoogleInfo("${latitude}","${longitude}","${bName}")' href="#"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/icons8-google-maps-50.png" alt="Google maps business information"/></a>
-				<a class="source-logo" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}" alt="original review"/></a>
+				<a class="google-info" onclick="displayGoogleInfo('${latitude}','${longitude}','${bName}')" aria-label="map of ${businessName} location" href="#"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/icons8-google-maps-50.png" alt="Google maps business information"/></a>
+				<a class="source-logo" onclick="displayReviewSite('${results.review_url}')" aria-label='original review of${businessName}' href="#"><img src="${results.attribution_logo}" alt="original review"/></a>
  			</div>
  		</div>`;
 }
