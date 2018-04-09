@@ -199,16 +199,22 @@ function handleLightbox(data){
   console.log("handle lightbox ran");
   displayLightbox();}
 
+let lastFocus;
+
 function displayLightbox(){
   $('.overlay').addClass('active');
+  lastFocus = document.activeElement;
 }
 
 function hideLightbox(){
   console.log("hide lightbox ran");
   $('.overlay').removeClass('active');
+  lastFocus.focus();
+  $('.close-lightbox').focus;
   $('html, body').animate({
     scrollTop: $(".js-reviews-results").offset().top
     });
+
 }
 
 function escKeyHandler(){
@@ -223,9 +229,22 @@ function focusHandler(){
 	$('.js-reviews-results').on('focus', '.google-info', e =>{
 		console.log('handler ran')
 		$('.more-information').addClass('show-info');})	
+	$('.js-reviews-results').on('focus', '.source-logo', e =>{
+		console.log('handler ran')
+		$('.more-information').addClass('show-info');})	
+}
+
+function focusOutHandler(){
+	$('.js-reviews-results').on('focusout', '.google-info', e =>{
+		console.log('handler ran')
+		$('.more-information').removeClass('show-info');})	
+	$('.js-reviews-results').on('focusout', '.source-logo', e =>{
+		console.log('handler ran')
+		$('.more-information').removeClass('show-info');})	
 }
 
 focusHandler();
+focusOutHandler();
 handleSearchForm();
 escKeyHandler();
 handleBusinessInfo();
