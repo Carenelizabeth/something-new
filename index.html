@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Something New</title>
+    <meta name="description" content="A new way to search for businesses and services: finding the reviews first">
     <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai|Arvo|Courgette|Libre+Franklin:500,800|Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai|Arvo|Courgette|Libre+Franklin:500,800|Permanent+Marker|Varela+Round" rel="stylesheet">
   </head>
   <body>
     
@@ -32,25 +32,28 @@
 	   </header>
 	   
 	  <main role="main">
-	    <section class="request-form">
+	    <section class="request-form" role="region">
 	      <div class="loading-message">
 	          <div class="spinner"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/2.gif" alt="loading"></div>
 	          <p class="waiting-message"></p>
 	      </div>
 	   
 		    <form class="js-search-form">
-			      <label for="location">Zipode or city, state</label>
-			      <input type="text" name="location" class="js-location" placeholder="e.g. New York, NY">
-			      <label for="business-type">Type of business</label>
-			      <input type="text" name="business-type" class="js-business-type" placeholder="e.g. mexican food">
-			      <button type="submit" class="js-submit">Search</button>
+		    	<fieldset>
+		    		<legend class="visuallyhidden">Search parameters</legend>
+			      	<label for="location">Zipode or city, state</label>
+			      	<input type="text" name="location" class="js-location" placeholder="e.g. New York, NY">
+			      	<label for="business-type">Type of business</label>
+			      	<input type="text" name="business-type" class="js-business-type" placeholder="e.g. mexican food">
+			    </fieldset>
+			    <button type="submit" class="js-submit">Search</button>
 		    </form>
 		  </section>
 
 		  <div class="js-reviews-results" aria-live="polite"></div>
 	  </main>
 
-	  <section class="overlay">
+	  <section class="overlay" roll="region">
 	    <div class="lightbox">
 	    	<p class="close-lightbox"><a onclick="hideLightbox()" href="#">Close</a></p>
     		<div class="lightbox-data">
