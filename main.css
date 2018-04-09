@@ -207,6 +207,19 @@ focus{
   outline: solid 1px #5C080B; 
 }
 
+.visuallyhidden { 
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}
+
+fieldset{
+  display: flex;
+  flex-direction: column;
+}
+
 .js-submit{
   width: 200px;
   height: 30px;
@@ -222,12 +235,17 @@ focus{
   color: white;
 }
 
+.js-submit:focus{
+  background-color: #226973;
+  color: white;
+}
+
 .js-submit:active{
   transform: translateY(4px);
 }
 
-.js-reviews-results{
-  z-index: 2;
+.js-reviews-results{ 
+  z-index: 3;
   width: 80%;
   margin: 20px auto;
   display: flex;
@@ -248,29 +266,34 @@ focus{
   box-shadow: 2px 2px #081719;
 }
 
+.review-info{
+  z-index: 4;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
 .each-review:hover{
   transform: scale(1.05);
 }
 
 .each-review:hover .more-information{
-  visibility: visible;
+  z-index: 4;
+  background-color: rgba(12 ,38 ,41,.8);
 }
 
-.review-business-name{
+.show-info{
+  z-index: 4;
+  background-color: rgba(12 ,38 ,41,.8);
+}
+
+h2{
   font-family: 'Arvo', serif;
   color: #081719;
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
   line-height: 1.2em;
-} 
-
-.review-business-name:hover{
-  color: #5C080B;
-}
-
-.review-business-name:visited{
-  color: #1C575E;
 }
 
 blockquote{
@@ -315,19 +338,16 @@ blockquote::after{
   justify-content: space-around;
   align-items: center;
   height: 40%;
-  background-color: rgba(12 ,38 ,41,.8);
+  background-color: white;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  visibility: hidden;          
+  z-index: 2;          
 }
 
-h2{
-  font-family: 'Arvo', serif;
-  font-weight: bold;
+.error-heading{
   color: #5C080B;
-  font-size: 24;
   margin-bottom: 10px;
 }
 

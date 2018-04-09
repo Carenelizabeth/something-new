@@ -93,8 +93,8 @@ function displayReviews(data){
 function displayErrorMessage(){
   const errorMessage = `
     <div class="each-review error-message">
-      <h2>Uh-oh</h2>
-      <p>Something went wrong with the search! Would you like to try again with another search?<p>
+      <h2 class="error-heading">Something's not right...</h2>
+      <p>Something went wrong with the search! Would you like to try again? Or start another with another search?<p>
       <p class="review-author">Sincerely Sorry</p>
     </div>`;
     $('.js-reviews-results').html(errorMessage); 
@@ -103,8 +103,8 @@ function displayErrorMessage(){
 function displayNotFound(){
   const notFoundMessage = `
     <div class="each-review error-message">
-      <h2>Uh-oh</h2>
-      <p>We couldn't find any reviews for that search. Would you like to try again?<p>
+      <h2 class="error-heading">I have bad news</h2>
+      <p>We couldn't find any reviews for that search. Try using different wording or a broader location.<p>
       <p class="review-author">Very Apologetic</p>
     </div>`;
     $('.js-reviews-results').html(notFoundMessage); 
@@ -116,9 +116,11 @@ function renderReviews(results, latitude, longitude){
 	bName = businessName.split("'").join("&#8217;");
 return`
 		<div class="each-review">
-			<h2 class="review-business-name">${results.business_name}</h2>
-			<blockquote class="review-text">${results.review_text}</blockquote>
-			<p class="review-author">${results.review_author}</p>
+			<div class="review-info">
+				<h2 class="review-business-name">${results.business_name}</h2>
+				<blockquote class="review-text">${results.review_text}</blockquote>
+				<p class="review-author">${results.review_author}</p>
+			</div>
 			<div class="more-information">
 				<a class="google-info" onclick='displayGoogleInfo("${latitude}","${longitude}","${bName}")' href="#"><img src="http://carenkeyes.com/wp-content/uploads/2018/04/icons8-google-maps-50.png" alt="Google maps business information"/></a>
 				<a class="source-logo" onclick="displayReviewSite('${results.review_url}')" href="#"><img src="${results.attribution_logo}" alt="original review"/></a>
@@ -217,7 +219,13 @@ function escKeyHandler(){
   });
 }
 
+function focusHandler(){
+	$('.js-reviews-results').on('focus', '.google-info', e =>{
+		console.log('handler ran')
+		$('.more-information').addClass('show-info');})	
+}
 
+focusHandler();
 handleSearchForm();
 escKeyHandler();
 handleBusinessInfo();
