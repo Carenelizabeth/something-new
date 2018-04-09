@@ -153,7 +153,7 @@ function initializeLightbox(lat, lng, bName){
 
 	map = new google.maps.Map(document.getElementById('map'), {
   		center: local,
-  		zoom: 12
+  		zoom: 11
 	});
 
 	//let infowindow = new google.maps.InfoWindow();
@@ -175,10 +175,7 @@ function callback(results, status){
 }
 
 function createMarker(place){
-	let name = place.name;
-	let address = place.formatted_address;
-	console.log(name);
-	console.log(address);
+
 	let marker = new google.maps.Marker({
 		map: map,
 		position: place.geometry.location
@@ -187,8 +184,8 @@ function createMarker(place){
 	let infowindow = new google.maps.InfoWindow();
 
 	let business_info = `
-		<p class = "mapName">${name}</p>
-		<p>${address}</p>`
+		<p class = "mapName">${place.name}</p>
+		<p>${place.formatted_address}</p>`
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(business_info);
