@@ -26,10 +26,6 @@ function handleSearchForm(){
 	});
 }
 
-function handleBusinessInfo(){
-	$('.each-review').click(handleLightbox);
-}
-
 function randomMessage(){
 	let rand = Math.floor(LOADING_MESSAGE.length*Math.random());
 	//console.log(rand);
@@ -63,7 +59,7 @@ function retrieveReviewsAPI(location, businessType, callback){
 		timeout: 3000,
 		complete: function(){$('.loading-message').css("visibility", "hidden");},
 		success: callback,
-    	//error: displayErrorMessage()
+    	error: displayErrorMessage
 	};
 	$.ajax(settings);
 }
@@ -129,13 +125,14 @@ return`
 }
 
 function displayReviewSite(review){
-	$('.review-source').show();
-	$('#map').hide();
+	$('.review-display').show();
+	$('.map-info').hide();
 	displayLightbox();
+
 	let display = `<iframe class="original-review" src=${review}></iframe>`
-	console.log(display);
 	$('.review-source').html(display);
-}
+	console.log('display');}
+
 
 function displayGoogleInfo(lat, lng, bName){
 	let latitude = parseFloat(lat);
@@ -148,8 +145,8 @@ let map;
 //let marker;
 
 function initializeLightbox(lat, lng, bName){
-	$('#map').show();
-	$('.review-source').hide();
+	$('.map-info').show();
+	$('.review-display').hide();
 
 	let local = {lat: lat, lng: lng};
 
@@ -195,10 +192,6 @@ function createMarker(place){
 	})
 }
 
-function handleLightbox(data){
-  console.log("handle lightbox ran");
-  displayLightbox();}
-
 let lastFocus;
 
 function displayLightbox(){
@@ -231,17 +224,17 @@ function focusHandler(){
 		$(this).closest('div').addClass('show-info')
 		;})	
 	$('.js-reviews-results').on('focus', '.source-logo', function(e){
-		console.log('handler ran')
+		//console.log('handler ran')
 		$(this).closest('div').addClass('show-info')
 		;})		
 }
 
 function focusOutHandler(){
 	$('.js-reviews-results').on('focusout', '.google-info', e =>{
-		console.log('handler ran')
+		//console.log('handler ran')
 		$('.more-information').removeClass('show-info');})	
 	$('.js-reviews-results').on('focusout', '.source-logo', e =>{
-		console.log('handler ran')
+		//console.log('handler ran')
 		$('.more-information').removeClass('show-info');})	
 }
 
@@ -249,5 +242,5 @@ focusHandler();
 focusOutHandler();
 handleSearchForm();
 escKeyHandler();
-handleBusinessInfo();
+//handleBusinessInfo();
 //handleCloseLightbox();

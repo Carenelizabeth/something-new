@@ -57,9 +57,16 @@
 	    <div class="lightbox" aria-live="polite">
 	    	<p><a class="close-lightbox" onclick="hideLightbox()" href="#">Close</a></p>
     		<div class="lightbox-data">
-				<div id='map' aria-label="lightbox open to google map"></div>
-				<div class="review-source" aria-label="lightbox open to original map website"></div>
-    		</div>
+    			<div class="map-info">
+    				<div class="map-label"></div>
+					<div id='map' aria-label="lightbox open to google map"></div>
+				</div>
+				<div class="review-display">
+					<div class="display-error">
+						<div class="review-source" aria-label="lightbox open to original review"></div>
+					</div>
+					<div class="review-url"></div>
+    			</div>
 	      	</div>
 	    </div>
 	  </section>
