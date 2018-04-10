@@ -227,15 +227,13 @@ function escKeyHandler(){
 }
 
 function focusHandler(){
-	$('.js-reviews-results').on('focus', '.google-info', e =>{
-		console.log('handler ran')
-		let target = e.target.closest('div');
-		console.log(target)
-		$('target').addClass('show-info')
+	$('.js-reviews-results').on('focus', '.google-info', function(e){
+		$(this).closest('div').addClass('show-info')
 		;})	
-	$('.js-reviews-results').on('focus', '.source-logo', e =>{
+	$('.js-reviews-results').on('focus', '.source-logo', function(e){
 		console.log('handler ran')
-		$('.more-information').addClass('show-info');})	
+		$(this).closest('div').addClass('show-info')
+		;})		
 }
 
 function focusOutHandler(){
