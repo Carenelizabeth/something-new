@@ -80,9 +80,24 @@ h1{
   font-family: 'Permanent Marker', cursive;
 }
 
+h2{
+  font-family: 'Arvo', serif;
+  color: #17464C;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.2em;
+}
+
+p{
+  font-family: 'Arima Madurai', cursive;
+  font-size: 18px;
+  line-height: 1.2em;
+}
+
 .description{
   width: 50%;
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Arvo', serif;
   color: white;
   text-align: left;
   background-color: rgba(28, 87, 94, .3)
@@ -92,7 +107,7 @@ h1{
 .description p{
   font-size: 20px;
   margin: .4em;
-  line-height: 1.2em;
+  line-height: 1.6em;
 }
 
 .images{
@@ -284,14 +299,6 @@ fieldset{
   background-color: rgba(12 ,38 ,41,.8);
 }
 
-h2{
-  font-family: 'Arvo', serif;
-  color: #17464C;
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  line-height: 1.2em;
-}
 
 blockquote{
   font-family: 'Arima Madurai', cursive;
@@ -460,6 +467,16 @@ blockquote::after{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20%;
+}
+
+.info{
+  height: 80px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .review-source{
@@ -485,9 +502,25 @@ blockquote::after{
    color: #17464C;
 }
 
+.map-info{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.map-label{
+  height: 50px;
+  padding: 10px;
+  border-bottom: solid 2px #17464C;
+}
+
 #map{
-  height: 100%;
-  width: 100%;
+ flex: auto; 
 }
 
 @media only screen and (min-width: 550px){

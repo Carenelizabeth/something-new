@@ -134,16 +134,21 @@ function displayReviewSite(review){
 	let display = `<iframe class="original-review" src=${review}></iframe>`
 	$('.review-source').html(display);
 	console.log('display');
-	setTimeout(displayNotShown, 3000)}
+	setTimeout(displayNotShown, 3000)
+}
 
 function displayWaiting(){
-	let waitToLoad = `<div><h2>Waiting for Response</h2></div>`
+	let waitToLoad = `<div class="info"><h2>Computers are talking...</h2>
+							<div><img src="http://carenkeyes.com/wp-content/uploads/2018/04/16.gif"></div>
+					  </div>`
 	$('.message').html(waitToLoad);
 }
 
 //After three seconds, this changes the waiting message to an error message. If the site does load, it covers this message
 function displayNotShown(){
-	let notShown = `<div><h2 class="error-heading">Well, that's embarassing</h2></div>`
+	let notShown = `<div class="info"><h2 class="error-heading">Well, that's embarassing</h2>
+						<p>This page can't be accessed from here. Try clicking the link below to open it in a new tab</p>
+					</div>`
 	$('.message').html(notShown);
 }
 
@@ -164,6 +169,7 @@ let map;
 //let marker;
 
 function initializeLightbox(lat, lng, bName){
+	mapHeader(bName);
 	$('.map-info').show();
 	$('.review-display').hide();
 
@@ -182,6 +188,11 @@ function initializeLightbox(lat, lng, bName){
 		radius: 500,
       	query: bName}, 
     callback);
+}
+
+function mapHeader(bName){
+	let header = `<h2>Search results for ${bName}</h2>`
+	$('.map-label').html(header);
 }
 
 function callback(results, status){
