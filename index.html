@@ -42,9 +42,9 @@
 		    	<fieldset>
 		    		<legend class="visuallyhidden">Search parameters</legend>
 			      	<label for="location">Zipode or city, state</label>
-			      	<input type="text" name="location" class="js-location" placeholder="e.g. New York, NY">
+			      	<input type="text" name="location" id="location" class="js-location" placeholder="e.g. New York, NY">
 			      	<label for="business-type">Type of business</label>
-			      	<input type="text" name="business-type" class="js-business-type" placeholder="e.g. mexican food">
+			      	<input type="text" name="business-type" id="business-type" class="js-business-type" placeholder="e.g. mexican food">
 			    </fieldset>
 			    <button type="submit" class="js-submit">Search</button>
 		    </form>
@@ -53,12 +53,12 @@
 		  <div class="js-reviews-results" aria-live="polite"></div>
 	  </main>
 
-	  <section class="overlay" roll="region">
-	    <div class="lightbox">
+	  <section class="overlay" roll="dialog">
+	    <div class="lightbox" aria-live="polite">
 	    	<p><a class="close-lightbox" onclick="hideLightbox()" href="#">Close</a></p>
     		<div class="lightbox-data">
-				<div id='map'></div>
-				<div class="review-source"></div>
+				<div id='map' aria-label="lightbox open to google map"></div>
+				<div class="review-source" aria-label="lightbox open to original map website"></div>
     		</div>
 	      	</div>
 	    </div>

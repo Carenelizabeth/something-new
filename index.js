@@ -204,17 +204,18 @@ let lastFocus;
 function displayLightbox(){
   $('.overlay').addClass('active');
   lastFocus = document.activeElement;
+  $('.lightbox').focus;
+  $('main').prop('hidden', true)
 }
 
 function hideLightbox(){
   console.log("hide lightbox ran");
   $('.overlay').removeClass('active');
+  $('main').prop('hidden', false)
   lastFocus.focus();
-  $('.close-lightbox').focus;
   $('html, body').animate({
     scrollTop: $(".js-reviews-results").offset().top
     });
-
 }
 
 function escKeyHandler(){
@@ -228,7 +229,10 @@ function escKeyHandler(){
 function focusHandler(){
 	$('.js-reviews-results').on('focus', '.google-info', e =>{
 		console.log('handler ran')
-		$('.more-information').addClass('show-info');})	
+		let target = e.target.closest('div');
+		console.log(target)
+		$('target').addClass('show-info')
+		;})	
 	$('.js-reviews-results').on('focus', '.source-logo', e =>{
 		console.log('handler ran')
 		$('.more-information').addClass('show-info');})	

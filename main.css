@@ -404,7 +404,7 @@ blockquote::after{
   background-color: white;
   height: 90%;
   width: 90%;
-  z-index: 4;
+  z-index: 5;
   box-shadow: 5px 10px 10px;
 }
 
