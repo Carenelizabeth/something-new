@@ -124,24 +124,33 @@ return`
  		</div>`;
 }
 
+//This opens a lightbox and displays the website of the original review in an iframe
 function displayReviewSite(review){
 	$('.review-display').show();
 	$('.map-info').hide();
 	displayLightbox();
 	displayWaiting();
+	displayURL(review);
 	let display = `<iframe class="original-review" src=${review}></iframe>`
 	$('.review-source').html(display);
 	console.log('display');
-	setTimeout(displayNotShown, 2000)}
+	setTimeout(displayNotShown, 3000)}
 
+function displayWaiting(){
+	let waitToLoad = `<div><h2>Waiting for Response</h2></div>`
+	$('.message').html(waitToLoad);
+}
+
+//After three seconds, this changes the waiting message to an error message. If the site does load, it covers this message
 function displayNotShown(){
 	let notShown = `<div><h2 class="error-heading">Well, that's embarassing</h2></div>`
 	$('.message').html(notShown);
 }
 
-function displayWaiting(){
-	let waitToLoad = `<div><h2>Waiting for Response</h2></div>`
-	$('.message').html(waitToLoad);
+
+function displayURL(url){
+	let disUrl = `<div><a class="open-new-tab" href=${url} target="_blank">Open the review site in a new tab</a></div>`
+	$('.review-url').html(disUrl);
 }
 
 function displayGoogleInfo(lat, lng, bName){
