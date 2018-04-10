@@ -88,7 +88,7 @@ function displayReviews(data){
 
 function displayErrorMessage(){
   const errorMessage = `
-    <div class="each-review error-message">
+    <div class="each-review error-message review-info">
       <h2 class="error-heading">Something's not right...</h2>
       <p>Something went wrong with the search! Would you like to try again? Or start another with another search?<p>
       <p class="review-author">Sincerely Sorry</p>
@@ -98,7 +98,7 @@ function displayErrorMessage(){
 
 function displayNotFound(){
   const notFoundMessage = `
-    <div class="each-review error-message">
+    <div class="each-review error-message review-info">
       <h2 class="error-heading">I have bad news</h2>
       <p>We couldn't find any reviews for that search. Try using different wording or a broader location.<p>
       <p class="review-author">Very Apologetic</p>
@@ -128,11 +128,21 @@ function displayReviewSite(review){
 	$('.review-display').show();
 	$('.map-info').hide();
 	displayLightbox();
-
+	displayWaiting();
 	let display = `<iframe class="original-review" src=${review}></iframe>`
 	$('.review-source').html(display);
-	console.log('display');}
+	console.log('display');
+	setTimeout(displayNotShown, 2000)}
 
+function displayNotShown(){
+	let notShown = `<div><h2 class="error-heading">Well, that's embarassing</h2></div>`
+	$('.message').html(notShown);
+}
+
+function displayWaiting(){
+	let waitToLoad = `<div><h2>Waiting for Response</h2></div>`
+	$('.message').html(waitToLoad);
+}
 
 function displayGoogleInfo(lat, lng, bName){
 	let latitude = parseFloat(lat);

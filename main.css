@@ -447,8 +447,19 @@ blockquote::after{
 .display-error{
   position: relative;
   width: 100%;
-  border: solid 4px red;
   flex-grow: 1;
+}
+
+.message{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .review-source{
@@ -457,7 +468,7 @@ blockquote::after{
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,100,0,.1);
+  z-index: 6;
 }
 
 .review-url{
