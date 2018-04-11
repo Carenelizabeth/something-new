@@ -562,7 +562,7 @@ h1{
 
 }
 
-@media only screen and (min-width: 550px) and (orientation: portrait){
+@media only screen and (min-width: 600px){
   
 h1{
   font-size: 80px
@@ -582,8 +582,8 @@ h1{
   align-items: center;
 }
 
-.each-result{
-  margin: 20px 0 20px 20px;
+.each-review{
+  margin-left: 20px;
 }
 
 .lightbox{
@@ -601,7 +601,7 @@ h1{
 }
 
 
-@media only screen and (min-width: 1000px){
+@media only screen and (min-width: 1080px){
 
 h1{
   font-size: 100px

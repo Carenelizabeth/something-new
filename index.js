@@ -238,6 +238,7 @@ function handleSearchForm(){
 	$('.js-search-form').submit(event => {
 	  event.preventDefault();
 		let location = $(event.currentTarget).find('.js-location').val();
+		console.log(location);
 		let businessType = $(event.currentTarget).find('.js-business-type').val();
 		$(event.currentTarget).find('.js-business-type').val("");
 		retrieveReviewsAPI(location, businessType, displayReviews);
