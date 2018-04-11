@@ -83,7 +83,7 @@ function renderReviews(results, latitude, longitude){
 	businessName = results.business_name
 	bName = businessName.split("'").join("&#8217;");
 	return`
-		<div class="each-review">
+		<div class="each-review" onclick="">
 			<div class="review-info">
 				<h2 class="review-business-name">${results.business_name}</h2>
 				<blockquote class="review-text">${results.review_text}</blockquote>
