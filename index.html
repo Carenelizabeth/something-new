@@ -55,16 +55,16 @@
 
 	  <section class="overlay" roll="dialog">
 	    <div class="lightbox" aria-live="polite">
-	    	<p><a class="close-lightbox" onclick="hideLightbox()" href="#">Close</a></p>
+	    	<p class="close-lightbox"><a class="close" onclick="hideLightbox()" href="#">Close</a></p>
     		<div class="lightbox-data">
     			<div class="map-info">
-    				<div class="map-label"></div>
-					<div id='map' aria-label="lightbox open to google map"></div>
+    				<div class="map-label" aria-label="lightbox open to google map"></div>
+					<div id='map' ></div>
 				</div>
-				<div class="review-display">
+				<div class="review-display" aria-label="lightbox open to original review">
 					<div class="display-error">
 						<div class="message"></div>
-						<div class="review-source" aria-label="lightbox open to original review"></div>
+						<div class="review-source"></div>
 					</div>
 					<div class="review-url"></div>
     			</div>

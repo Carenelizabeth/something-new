@@ -48,28 +48,7 @@ table {
 }
 
 /*Start custom CSS*/
-
 *{box-sizing: border-box}
-
-body{
-  background-color: #3599A6;
-}
-
-header{
-  background-color: #1C575E;
-}
-
-.banner-text{
-  position: relative;
-  z-index: 2;
-  height: 70vh;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-}
 
 h1{
   font-size: 50px;
@@ -85,31 +64,52 @@ h2{
   color: #17464C;
   font-size: 24px;
   font-weight: bold;
-  text-decoration: none;
   line-height: 1.2em;
 }
 
 p{
-  font-family: 'Arima Madurai', cursive;
+  font-family: 'Varela Round', sans-serif;
   font-size: 18px;
-  line-height: 1.2em;
+  line-height: 1.4em;
+  margin-top:.4em;
+}
+
+body{
+  background-color: #3599A6;
+}
+
+/*Styling for banner area*/
+header{
+  background-color: #1C575E;
+  height: 70vh;
+}
+
+.banner-text{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .description{
   width: 50%;
-  font-family: 'Arvo', serif;
   color: white;
   text-align: left;
   background-color: rgba(28, 87, 94, .3)
-
 }
 
 .description p{
   font-size: 20px;
-  margin: .4em;
-  line-height: 1.6em;
+  'Varela Round', sans-serif;
+  font-weight: bold;
 }
 
+/*background images*/
 .images{
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -165,6 +165,7 @@ p{
   background-size: contain;
 }
 
+/*form styling*/
 .request-form{
   position: relative;
   width: 80%;
@@ -172,33 +173,9 @@ p{
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap-reverse;
+  align-content: flex-end;
   z-index: 2;
-}
-
-.loading-message{
-  width: 200px;
-  margin-right: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-}
-
-.spinner{
-  width: 64px;
-  height: 64px;
-  margin-bottom: 10px;
-}
-
-.loading-message p {
-  font-family: 'Varela Round', sans-serif;
-  font-size: 20px;
-  line-height: 1.2em;
-  color: white;
-  font-weight: bold;
-  text-shadow: 1px 1px #081719;
-  text-align: center;
 }
 
 form{
@@ -208,6 +185,7 @@ form{
   flex-direction: column;
   align-items: flex-end;
   font-family: 'Varela Round', sans-serif;
+  font-weight: bold;
   font-size: 18px;
 }
 
@@ -223,6 +201,7 @@ focus{
   outline: solid 1px #5C080B; 
 }
 
+/*This hides the fieldset label while leaving it accesible to screen readers*/
 .visuallyhidden { 
   position: absolute; 
   overflow: hidden; 
@@ -255,6 +234,45 @@ fieldset{
   transform: translateY(4px);
 }
 
+/*spinner and loading message*/
+.loading-message{
+  width: 200px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.spinner{
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+}
+
+.loading-message p {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  line-height: 1.2em;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px #081719;
+  text-align: center;
+}
+
+/*styles API query results*/
+.error-heading{
+  color: #5C080B;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  line-height: 1.6em;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
 .js-reviews-results{ 
   z-index: 3;
   width: 80%;
@@ -268,7 +286,7 @@ fieldset{
   background-color: white;
   width: 300px;
   flex: auto;
-  margin: 20px 0 20px 20px;
+  margin: 20px auto;
   position: relative;
   box-shadow: 2px 2px #081719;
 }
@@ -289,19 +307,8 @@ fieldset{
   transform: scale(1.05);
 }
 
-.each-review:hover .more-information{
-  z-index: 4;
-  background-color: rgba(12 ,38 ,41,.8);
-}
-
-.show-info{
-  z-index: 4;
-  background-color: rgba(12 ,38 ,41,.8);
-}
-
-
 blockquote{
-  font-family: 'Arima Madurai', cursive;
+  font-family: 'Varela Round', sans-serif;
   line-height: 1.6em;
   font-size: 18px;
   margin: 10px 0;
@@ -349,6 +356,18 @@ blockquote::after{
   bottom: 0;        
 }
 
+/*this displays the clickable logos on hover*/
+.each-review:hover .more-information{
+  z-index: 4;
+  background-color: rgba(12 ,38 ,41,.8);
+}
+
+/*this displays the clickable logos when the link is selected through the keyboard*/
+.show-info{
+  z-index: 4;
+  background-color: rgba(12 ,38 ,41,.8);
+}
+
 .google-info:hover,.source-logo:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -374,18 +393,7 @@ blockquote::after{
   }
 }
 
-.error-heading{
-  color: #5C080B;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  font-family: 'Arima Madurai', cursive;
-  line-height: 1.6em;
-  font-size: 18px;
-  margin: 10px 0;
-}
-
+/*styles related to lightbox*/
 .overlay{
   position: fixed;
   top: -100%;
@@ -414,21 +422,22 @@ blockquote::after{
 
 .close-lightbox{
   position: absolute;
-  margin: 10px;
   right: 0;
-  top:-50px;
+  top:-30px;
   color: white;
   font-family: 'Libre Franklin', sans-serif;
+  background-color: rgba(0,0,0,.5);
   font-size: 24px;
   font-weight: bold;
-  z-index: 5;
+  z-index: 7;
 }
 
-.close-lightbox:hover, .close-lightbox:focus{
+
+.close:hover, .close:focus{
   color: #5C080B;
 }
 
-.close-lightbox:visited{
+.close:visited{
   color: white;
 }
 
@@ -493,13 +502,17 @@ blockquote::after{
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  border-top: solid 2px #17464C;
 }
 
 .open-new-tab{
-   font-family: 'Arima Madurai', cursive;
-   font-size: 24px;
-   text-decoration: none;
-   color: #17464C;
+  font-family: 'Arvo', serif;
+  color: #17464C;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.2em;
+  text-align: center;
 }
 
 .map-info{
@@ -508,20 +521,36 @@ blockquote::after{
   bottom: 0;
   left: 0;
   right: 0;
-
   display: flex;
   flex-direction: column;
 }
 
 .map-label{
-  height: 50px;
+  min-height: 50px;
   padding: 10px;
   border-bottom: solid 2px #17464C;
+}
+
+.map-label h2{
+  text-align: center;
+  font-size: 18px;
 }
 
 #map{
  flex: auto; 
 }
+
+@media only screen and (max-height: 900px) and (orientation: landscape){
+
+header{
+  height: 85vh;
+}
+.request-form{
+  margin-top: 10px;
+}
+}
+
+
 
 @media only screen and (min-width: 550px){
   
@@ -529,22 +558,22 @@ h1{
   font-size: 80px
 }
 
-.description p{
+.description p, .review-url, .map-label h2{
     font-size: 24px;
 }
 
-.banner-text{
-  width: 66%;
-  align-items: flex-start;
+.banner-text, .request-form, .js-reviews-results{
+  width: 80%;
 }
 
-  
-.request-form{
-  width: 66%;
+.loading-message{
+  margin-top: 0px;
+  margin-right: 20%;
+  align-items: center;
 }
-  
-.js-reviews-results{
-  width: 66%;
+
+.each-result{
+  margin: 20px 0 20px 20px;
 }
 
 .lightbox{
@@ -552,21 +581,11 @@ h1{
   min-height: 80%;
 }
 
-.lightbox-data{
-  flex-direction: row
-}
-.business-image{
-  display: block;
-}
-
-.business-map{
-  width: 50%;
-  height: 100%;
-}
-
-iframe{
-  height: 100%;
-  width: 100%;
+.close-lightbox{
+  margin: 10px;
+  top:-50px;
+  background-color: transparent;
+  font-size: 24px;
 }
 
 }
@@ -602,7 +621,6 @@ h1{
 }
 
 }
-
 
 
 
