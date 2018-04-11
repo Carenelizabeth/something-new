@@ -550,9 +550,19 @@ header{
 }
 }
 
+@media only screen and (max-height: 400px) and (orientation: landscape){
 
+h1{
+  font-size: 50px;
+}
 
-@media only screen and (min-width: 550px){
+.description{
+  font-size: 18px;
+}
+
+}
+
+@media only screen and (min-width: 550px) and (orientation: portrait){
   
 h1{
   font-size: 80px
