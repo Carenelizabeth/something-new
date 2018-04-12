@@ -460,6 +460,8 @@ blockquote::after{
 .review-display{
   display: flex;
   flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
   height: 100%;
 }
 
